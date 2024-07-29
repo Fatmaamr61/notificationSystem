@@ -15,7 +15,7 @@ This project is a real-time notification system built using Node.js, Express, So
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/fatmaamr61/real-time-notifications.git
+    git clone https://github.com/Fatmaamr61/real-time-notifications.git
     cd real-time-notifications
     ```
 
