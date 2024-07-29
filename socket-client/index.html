@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-time Notifications Test</title>
+</head>
+<body>
+    <h1>Real-time Notifications</h1>
+    <div id="notifications"></div>
+
+    <script src="./node_modules/socket.io-client/dist/socket.io.min.js"></script>
+    <script>
+        // Establish a connection with the server
+        const socket = io("http://localhost:5005");
+
+        // Register the user (use an actual userId from your database)
+        socket.emit("register", "userId");
+
+        // Listen for notifications and display them
+        socket.on("new-product", (data) => {
+            const notification = document.createElement("div");
+            notification.textContent = `hey there catch up the new arrival our new ${data.message}`;
+            document.getElementById("notifications").appendChild(notification);
+        });
+
+        socket.on("new-discount", (data) => {
+            const notification = document.createElement("div");
+            notification.textContent = `${data.message}`;
+            document.getElementById("notifications").appendChild(notification);
+        });
+
+        socket.on("inactive-user", (data) => {
+            const notification = document.createElement("div");
+            notification.textContent = `Inactive user notification: ${data.message}`;
+            document.getElementById("notifications").appendChild(notification);
+        });
+    </script>
+</body>
+</html>
